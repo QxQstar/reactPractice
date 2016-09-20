@@ -3,7 +3,7 @@
  */
 var gulp  = require('gulp');
 var gulpReact = require('gulp-react');
-gulp.task('default',['html','img'],function(){
+gulp.task('default',['html','img','css'],function(){
    return gulp.src('./build/**/*.js')
                 .pipe(gulpReact())
                 .pipe(gulp.dest('dist'));
@@ -14,5 +14,9 @@ gulp.task('html',function(){
 });
 gulp.task('img',function(){
     return gulp.src('./build/**/*.jpg')
+                .pipe(gulp.dest('dist'));
+});
+gulp.task('css',function(){
+    return gulp.src('./build/**/*.css')
                 .pipe(gulp.dest('dist'));
 });
