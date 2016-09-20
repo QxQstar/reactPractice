@@ -1,32 +1,32 @@
 /**
  * Created by Administrator on 2016/9/20.
  */
-var NavBar = React.createClass({
+var NavBar = React.createClass({displayName: "NavBar",
     render:function(){
-        return <NavMenu data = {this.props.data}/>
+        return React.createElement(NavMenu, {data: this.props.data})
     }
 });
-var NavMenu = React.createClass({
+var NavMenu = React.createClass({displayName: "NavMenu",
     render:function(){
         var menuItemList = this.props.data.map(function(item){
-            return <MenuItem name = {item.itemName} linkData = {item.link}/>
+            return React.createElement(MenuItem, {name: item.itemName, linkData: item.link})
         });
-        return <ul className = 'navMenu'>
-                    {menuItemList}
-                </ul>
+        return React.createElement("ul", {className: "navMenu"}, 
+                    menuItemList
+                )
     }
 });
-var MenuItem = React.createClass({
+var MenuItem = React.createClass({displayName: "MenuItem",
     getInitialState:function(){
         return {
             spread:true
         }
     },
     render:function(){
-        return <li className='menuItem' ref = "menuItem">
-                    <span>{this.props.name}</span>
-                    <LinkList linkData = {this.props.linkData} spread = {this.state.spread}/>
-                </li>
+        return React.createElement("li", {className: "menuItem", ref: "menuItem"}, 
+                    React.createElement("span", null, this.props.name), 
+                    React.createElement(LinkList, {linkData: this.props.linkData, spread: this.state.spread})
+                )
     },
     mouseEnter:function(){
         this.setState({
@@ -44,7 +44,7 @@ var MenuItem = React.createClass({
         $(li).hover(_self.mouseEnter,_self.mouseLeave);
     }
 });
-var LinkList = React.createClass({
+var LinkList = React.createClass({displayName: "LinkList",
     style:{
         height:"0"
     },
@@ -57,11 +57,11 @@ var LinkList = React.createClass({
     },
     render:function(){
         var navLinkList =  this.props.linkData.map(function(item){
-            return  <NavLink linkimg = {item.img} linkName = {item.linkName}/>
+            return  React.createElement(NavLink, {linkimg: item.img, linkName: item.linkName})
         });
-        return <ul className = 'linkList' ref='cur'>
-                    {navLinkList}
-                </ul>
+        return React.createElement("ul", {className: "linkList", ref: "cur"}, 
+                    navLinkList
+                )
     },
     componentDidUpdate:function(){
         var _self = this;
@@ -70,14 +70,14 @@ var LinkList = React.createClass({
         },400);
     }
 });
-var NavLink = React.createClass({
+var NavLink = React.createClass({displayName: "NavLink",
     render:function(){
-        return <li className='navLink'>
-                    <a href='#'>
-                        <img src={this.props.linkimg}/>
-                        <p>{this.props.linkName}</p>
-                    </a>
-                </li>
+        return React.createElement("li", {className: "navLink"}, 
+                    React.createElement("a", {href: "#"}, 
+                        React.createElement("img", {src: this.props.linkimg}), 
+                        React.createElement("p", null, this.props.linkName)
+                    )
+                )
     }
 });
 //demo需要的数据
@@ -125,4 +125,4 @@ var data = [
         ]
     }
 ];
-ReactDOM.render(<NavBar data = {data}/>,document.getElementById('navBar'));
+ReactDOM.render(React.createElement(NavBar, {data: data}),document.getElementById('navBar'));

@@ -1,0 +1,59 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+a{
+    outline: none;
+    text-decoration: none;
+}
+a:focus{
+    outline: none;
+}
+img{
+    outline: none;
+}
+ul,li{
+    list-style: none;
+}
+.gTop{
+    position: relative;
+    height: 60px;
+    width: 100%;
+}
+.navBar{
+    background: #333;
+    color: #ffffff;
+    font: 14px 'microsoft yahei';
+    text-align: center;
+    height: 100%;
+    line-height: 60px;
+}
+.navBar li{
+    display: inline-block;
+    cursor: pointer;
+}
+.navBar .menuItem{
+    margin: 0 10px;
+}
+.navBar .linkList{
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    height: 0;
+    overflow: hidden;
+}
+.navBar .linkList .navLink{
+    width: 150px;
+    margin-top: 30px;
+}
+.navBar .linkList a{
+    display: block;
+    line-height: 0;
+}
+.navBar .linkList img{
+    width: 120px;
+}
+.navBar .linkList p{
+    line-height: 2.0;
+}
